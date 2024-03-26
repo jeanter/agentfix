@@ -6,7 +6,7 @@ example :
 add dependent 3rd-party library path to MANIFEST.MF
 
 the api-client-1.1.2-SNAPSHOT.jar is my test jar  
-the root.jar is springboot jar for test
+the root.jar is a springboot jar for test
 the floder like :
 - folder
   - root.jar
