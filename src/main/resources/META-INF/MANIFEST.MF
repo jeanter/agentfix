@@ -1,0 +1,6 @@
+Class-Path: lib/api-client-1.1.2-SNAPSHOT.jar lib/javassist-3.22.0-GA.jar
+Premain-Class: com.json.agentfix.MethodBodyReplacementAgent
+Agent-Class:   com.json.agentfix.MethodBodyReplacementAgent 
+Can-Redefine-Classes: true
+Can-Retransform-Classes: true
+
