@@ -22,7 +22,6 @@ the floder like :
 run :
     java -javaagent:./agentfix-0.0.1-SNAPSHOT.jar  -jar root.jar
 
-TargerFix,java is
 
 
 用agent快速修改第三方包的指定方法 
