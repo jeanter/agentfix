@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 @Target(value=ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ReplaceMethod {
+public @interface MethodReplace {
     String targetClassName() default "";
     Class<?> targetClass() default Object.class;
     String methodName();

@@ -11,7 +11,7 @@ import javassist.CtClass;
 import javassist.CtMethod;
 import javassist.NotFoundException;
 
-public class MethodBodyTransformer implements ClassFileTransformer {
+public class MethodTransformer implements ClassFileTransformer {
 
     public static Map<String, Map<String, CtMethod>> replacementMethods = new HashMap<String, Map<String, CtMethod>>();
 
@@ -45,7 +45,7 @@ public class MethodBodyTransformer implements ClassFileTransformer {
             Method[] methods = clazz.getDeclaredMethods();
             ClassPool pool = ClassPool.getDefault();
             for (Method method : methods) {
-                ReplaceMethod annotation = method.getAnnotation(ReplaceMethod.class);
+            	MethodReplace annotation = method.getAnnotation(MethodReplace.class);
                 if (annotation == null) {
                     continue;
                 }

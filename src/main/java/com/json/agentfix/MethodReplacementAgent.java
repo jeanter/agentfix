@@ -7,11 +7,11 @@ import java.lang.instrument.Instrumentation;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MethodBodyReplacementAgent {
+public class MethodReplacementAgent {
 
     public static void premain(String agentArgs, Instrumentation instrumentation) {
         try {
-            InputStream in = MethodBodyReplacementAgent.class.getClassLoader().getResourceAsStream("method-replacements.txt");
+            InputStream in = MethodReplacementAgent.class.getClassLoader().getResourceAsStream("replacements.txt");
             if (in == null) {
                 throw new Exception("/method-replacements.txt is missing. Include it and list all classes that define method replacements");
             }
@@ -23,16 +23,16 @@ public class MethodBodyReplacementAgent {
             }
             r.close();
             for (Class<?> c : loadedClasses) {
-                MethodBodyTransformer.setupMethodRedefinition(c);
+                MethodTransformer.setupMethodRedefinition(c);
             }
 
-            Class<?>[] classes = new Class<?>[MethodBodyTransformer.replacementMethods.size()];
+            Class<?>[] classes = new Class<?>[MethodTransformer.replacementMethods.size()];
             int i = 0;
-            for (String c : MethodBodyTransformer.replacementMethods.keySet()) {
+            for (String c : MethodTransformer.replacementMethods.keySet()) {
                 classes[i++] = Class.forName(c);
             }
 
-            instrumentation.addTransformer(new MethodBodyTransformer(), true);
+            instrumentation.addTransformer(new MethodTransformer(), true);
             instrumentation.retransformClasses(classes);
         } catch (Exception ex) {
             throw new RuntimeException(ex);
